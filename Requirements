@@ -1,0 +1,205 @@
+Requirements following based given structure :
+
+Create a database named ecommerce.
+
+-- Create the database named 'ecommerce'
+CREATE DATABASE ecommerce;
+
+-- Use the database
+USE ecommerce;
+
+--------------------------------
+
+Create three tables: customers, orders, and products.
+
+-- Create the 'customers' table
+
+CREATE TABLE customers 
+(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    address TEXT NOT NULL
+);
+
+-- Create the 'orders' table
+
+CREATE TABLE orders 
+(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE NOT NULL,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customers(id)
+);
+
+-- Create the 'products' table
+
+CREATE TABLE products 
+(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    description TEXT NOT NULL
+);
+
+-----------------------------------------
+
+Insert some sample data into the tables.
+
+-- Insert 20 sample customers
+
+INSERT INTO customers (name, email, address)
+VALUES
+('John Doe', 'john.doe@example.com', '123 Main St'),
+('Jane Smith', 'jane.smith@example.com', '456 Oak St'),
+('Alice Johnson', 'alice.johnson@example.com', '789 Pine St'),
+('Bob Williams', 'bob.williams@example.com', '101 Elm St'),
+('Chris Evans', 'chris.evans@example.com', '202 Maple St'),
+('Diana Prince', 'diana.prince@example.com', '303 Birch St'),
+('Ethan Hunt', 'ethan.hunt@example.com', '404 Cedar St'),
+('Fiona Gallagher', 'fiona.gallagher@example.com', '505 Spruce St'),
+('George Lucas', 'george.lucas@example.com', '606 Walnut St'),
+('Hannah Baker', 'hannah.baker@example.com', '707 Chestnut St'),
+('Isaac Newton', 'isaac.newton@example.com', '808 Aspen St'),
+('Jack Ryan', 'jack.ryan@example.com', '909 Fir St'),
+('Katie Holmes', 'katie.holmes@example.com', '1010 Beech St'),
+('Liam Neeson', 'liam.neeson@example.com', '1111 Palm St'),
+('Monica Geller', 'monica.geller@example.com', '1212 Oak St'),
+('Nancy Drew', 'nancy.drew@example.com', '1313 Pine St'),
+('Oscar Wilde', 'oscar.wilde@example.com', '1414 Cedar St'),
+('Phoebe Buffay', 'phoebe.buffay@example.com', '1515 Maple St'),
+('Quentin Tarantino', 'quentin.tarantino@example.com', '1616 Birch St'),
+('Rachel Green', 'rachel.green@example.com', '1717 Elm St');
+
+-- Insert 20 sample products
+
+INSERT INTO products (Products_name, price, description)
+VALUES
+('Product A', 25.00, 'Description for Product A'),
+('Product B', 30.00, 'Description for Product B'),
+('Product C', 40.00, 'Description for Product C'),
+('Product D', 50.00, 'Description for Product D'),
+('Product E', 60.00, 'Description for Product E'),
+('Product F', 20.00, 'Description for Product F'),
+('Product G', 45.00, 'Description for Product G'),
+('Product H', 35.00, 'Description for Product H'),
+('Product I', 55.00, 'Description for Product I'),
+('Product J', 65.00, 'Description for Product J'),
+('Product K', 25.00, 'Description for Product K'),
+('Product L', 75.00, 'Description for Product L'),
+('Product M', 85.00, 'Description for Product M'),
+('Product N', 95.00, 'Description for Product N'),
+('Product O', 100.00, 'Description for Product O'),
+('Product P', 110.00, 'Description for Product P'),
+('Product Q', 120.00, 'Description for Product Q'),
+('Product R', 130.00, 'Description for Product R'),
+('Product S', 140.00, 'Description for Product S'),
+('Product T', 150.00, 'Description for Product T');
+
+-- Insert 20 sample orders
+
+INSERT INTO orders (customer_id, order_date, total_amount)
+VALUES
+(1, '2024-08-15', 100.00),
+(2, '2024-09-01', 150.00),
+(3, '2024-08-25', 200.00),
+(4, '2024-09-03', 250.00),
+(5, '2024-08-29', 300.00),
+(6, '2024-08-20', 350.00),
+(7, '2024-09-05', 400.00),
+(8, '2024-08-15', 450.00),
+(9, '2024-09-07', 500.00),
+(10, '2024-08-22', 550.00),
+(11, '2024-09-01', 600.00),
+(12, '2024-08-19', 650.00),
+(13, '2024-09-09', 700.00),
+(14, '2024-08-25', 750.00),
+(15, '2024-09-03', 800.00),
+(16, '2024-08-27', 850.00),
+(17, '2024-09-10', 900.00),
+(18, '2024-08-31', 950.00),
+(19, '2024-09-02', 1000.00),
+(20, '2024-08-28', 1050.00);
+
+----------------------------
+
+-- sample data for customers table
+
+SELECT * FROM ecommerce.customers;
+
+id	name	     email	                           address
+1	John Doe	john.doe@example.com	           123 Main St
+2	Jane Smith	jane.smith@example.com	           456 Oak St
+3	Alice Johnson	alice.johnson@example.com	   789 Pine St
+4	Bob Williams	bob.williams@example.com	   101 Elm St
+5	Chris Evans	chris.evans@example.com	           202 Maple St
+6	Diana Prince	diana.prince@example.com	   303 Birch St
+7	Ethan Hunt	ethan.hunt@example.com	           404 Cedar St
+8	Fiona Gallagher	fiona.gallagher@example.com	   505 Spruce St
+9	George Lucas	george.lucas@example.com	   606 Walnut St
+10	Hannah Baker	hannah.baker@example.com	   707 Chestnut St
+11	Isaac Newton	isaac.newton@example.com 	   808 Aspen St
+12	Jack Ryan	jack.ryan@example.com	           909 Fir St
+13	Katie Holmes	katie.holmes@example.com	  1010 Beech St
+14	Liam Neeson	liam.neeson@example.com	          1111 Palm St
+15	Monica Geller	monica.geller@example.com	  1212 Oak St
+16	Nancy Drew	nancy.drew@example.com	          1313 Pine St
+17	Oscar Wilde	oscar.wilde@example.com	          1414 Cedar St
+18	Phoebe Buffay	phoebe.buffay@example.com	  1515 Maple St
+19	Quentin Tarantino quentin.tarantino@example.com	1616 Birch St
+20	Rachel Green	rachel.green@example.com	  1717 Elm St
+
+-- sample date for products table
+
+SELECT * FROM ecommerce.customers;
+
+id	Products_name	price	description         	discount
+1	Product A	25.00	Description for Product A	0.00
+2	Product B	30.00	Description for Product B	0.00
+3	Product C	40.00	Description for Product C	0.00
+4	Product D	50.00	Description for Product D	0.00
+5	Product E	60.00	Description for Product E	0.00
+6	Product F	20.00	Description for Product F	0.00
+7	Product G	45.00	Description for Product G	0.00
+8	Product H	35.00	Description for Product H	0.00
+9	Product I	55.00	Description for Product I	0.00
+10	Product J	65.00	Description for Product J	0.00
+11	Product K	25.00	Description for Product K	0.00
+12	Product L	75.00	Description for Product L	0.00
+13	Product M	85.00	Description for Product M	0.00
+14	Product N	95.00	Description for Product N	0.00
+15	Product O	100.00	Description for Product O	0.00
+16	Product P	110.00	Description for Product P	0.00
+17	Product Q	120.00	Description for Product Q	0.00
+18	Product R	130.00	Description for Product R	0.00
+19	Product S	140.00	Description for Product S	0.00
+20	Product T	150.00	Description for Product T	0.00
+
+-- sample date for orders table
+
+SELECT * FROM ecommerce.orders;
+
+id customer_id	order_date	total_amount
+1	1	        2024-08-15	100.00
+2	2	        2024-09-01	150.00
+3	3	        2024-08-25	200.00
+4	4	        2024-09-03	250.00
+5	5	        2024-08-29	300.00
+6	6	        2024-08-20	350.00
+7	7	        2024-09-05	400.00
+8	8	        2024-08-15	450.00
+9	9	        2024-09-07	500.00
+10	10	        2024-08-22	550.00
+11	11	        2024-09-01	600.00
+12	12	        2024-08-19	650.00
+13	13	        2024-09-09	700.00
+14	14	        2024-08-25	750.00
+15	15	        2024-09-03	800.00
+16	16	        2024-08-27	850.00
+17	17	        2024-09-10	900.00
+18	18	        2024-08-31	950.00
+19	19	        2024-09-02	1000.00
+20	20	        2024-08-28	1050.00
+
+
