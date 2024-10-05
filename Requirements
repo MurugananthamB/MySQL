@@ -17,39 +17,16 @@ Create three tables: customers, orders, and products.
 CREATE TABLE customers 
 (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    customers_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     address TEXT NOT NULL
 );
 
--- Create the 'orders' table
-
-CREATE TABLE orders 
-(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_id INT,
-    order_date DATE NOT NULL,
-    total_amount DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES customers(id)
-);
-
--- Create the 'products' table
-
-CREATE TABLE products 
-(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    price DECIMAL(10, 2) NOT NULL,
-    description TEXT NOT NULL
-);
-
------------------------------------------
-
-Insert some sample data into the tables.
+Insert some sample data into the customers tables.
 
 -- Insert 20 sample customers
 
-INSERT INTO customers (name, email, address)
+INSERT INTO customers (customers_name, email, address)
 VALUES
 ('John Doe', 'john.doe@example.com', '123 Main St'),
 ('Jane Smith', 'jane.smith@example.com', '456 Oak St'),
@@ -72,30 +49,45 @@ VALUES
 ('Quentin Tarantino', 'quentin.tarantino@example.com', '1616 Birch St'),
 ('Rachel Green', 'rachel.green@example.com', '1717 Elm St');
 
--- Insert 20 sample products
+-- Retrieve for customers table
 
-INSERT INTO products (Products_name, price, description)
-VALUES
-('Product A', 25.00, 'Description for Product A'),
-('Product B', 30.00, 'Description for Product B'),
-('Product C', 40.00, 'Description for Product C'),
-('Product D', 50.00, 'Description for Product D'),
-('Product E', 60.00, 'Description for Product E'),
-('Product F', 20.00, 'Description for Product F'),
-('Product G', 45.00, 'Description for Product G'),
-('Product H', 35.00, 'Description for Product H'),
-('Product I', 55.00, 'Description for Product I'),
-('Product J', 65.00, 'Description for Product J'),
-('Product K', 25.00, 'Description for Product K'),
-('Product L', 75.00, 'Description for Product L'),
-('Product M', 85.00, 'Description for Product M'),
-('Product N', 95.00, 'Description for Product N'),
-('Product O', 100.00, 'Description for Product O'),
-('Product P', 110.00, 'Description for Product P'),
-('Product Q', 120.00, 'Description for Product Q'),
-('Product R', 130.00, 'Description for Product R'),
-('Product S', 140.00, 'Description for Product S'),
-('Product T', 150.00, 'Description for Product T');
+SELECT * FROM ecommerce.customers;
+
+id	customers_name   email	                           address
+1	John Doe	john.doe@example.com	           123 Main St
+2	Jane Smith	jane.smith@example.com	           456 Oak St
+3	Alice Johnson	alice.johnson@example.com	   789 Pine St
+4	Bob Williams	bob.williams@example.com	   101 Elm St
+5	Chris Evans	chris.evans@example.com	           202 Maple St
+6	Diana Prince	diana.prince@example.com	   303 Birch St
+7	Ethan Hunt	ethan.hunt@example.com	           404 Cedar St
+8	Fiona Gallagher	fiona.gallagher@example.com	   505 Spruce St
+9	George Lucas	george.lucas@example.com	   606 Walnut St
+10	Hannah Baker	hannah.baker@example.com	   707 Chestnut St
+11	Isaac Newton	isaac.newton@example.com 	   808 Aspen St
+12	Jack Ryan	jack.ryan@example.com	           909 Fir St
+13	Katie Holmes	katie.holmes@example.com	  1010 Beech St
+14	Liam Neeson	liam.neeson@example.com	          1111 Palm St
+15	Monica Geller	monica.geller@example.com	  1212 Oak St
+16	Nancy Drew	nancy.drew@example.com	          1313 Pine St
+17	Oscar Wilde	oscar.wilde@example.com	          1414 Cedar St
+18	Phoebe Buffay	phoebe.buffay@example.com	  1515 Maple St
+19	Quentin Tarantino quentin.tarantino@example.com	1616 Birch St
+20	Rachel Green	rachel.green@example.com	  1717 Elm St
+
+
+-----------------------------------------------------------------------------------
+
+-- Create the 'orders' table
+
+CREATE TABLE orders 
+(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE NOT NULL,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customers(id)
+);
 
 -- Insert 20 sample orders
 
@@ -122,39 +114,11 @@ VALUES
 (19, '2024-09-02', 1000.00),
 (20, '2024-08-28', 1050.00);
 
-----------------------------
+-- Retrieve date for products table
 
--- sample data for customers table
+SELECT * FROM ecommerce.products;
 
-SELECT * FROM ecommerce.customers;
-
-id	name	     email	                           address
-1	John Doe	john.doe@example.com	           123 Main St
-2	Jane Smith	jane.smith@example.com	           456 Oak St
-3	Alice Johnson	alice.johnson@example.com	   789 Pine St
-4	Bob Williams	bob.williams@example.com	   101 Elm St
-5	Chris Evans	chris.evans@example.com	           202 Maple St
-6	Diana Prince	diana.prince@example.com	   303 Birch St
-7	Ethan Hunt	ethan.hunt@example.com	           404 Cedar St
-8	Fiona Gallagher	fiona.gallagher@example.com	   505 Spruce St
-9	George Lucas	george.lucas@example.com	   606 Walnut St
-10	Hannah Baker	hannah.baker@example.com	   707 Chestnut St
-11	Isaac Newton	isaac.newton@example.com 	   808 Aspen St
-12	Jack Ryan	jack.ryan@example.com	           909 Fir St
-13	Katie Holmes	katie.holmes@example.com	  1010 Beech St
-14	Liam Neeson	liam.neeson@example.com	          1111 Palm St
-15	Monica Geller	monica.geller@example.com	  1212 Oak St
-16	Nancy Drew	nancy.drew@example.com	          1313 Pine St
-17	Oscar Wilde	oscar.wilde@example.com	          1414 Cedar St
-18	Phoebe Buffay	phoebe.buffay@example.com	  1515 Maple St
-19	Quentin Tarantino quentin.tarantino@example.com	1616 Birch St
-20	Rachel Green	rachel.green@example.com	  1717 Elm St
-
--- sample date for products table
-
-SELECT * FROM ecommerce.customers;
-
-id	Products_name	price	description         	discount
+id	Products_name price	description         	discount
 1	Product A	25.00	Description for Product A	0.00
 2	Product B	30.00	Description for Product B	0.00
 3	Product C	40.00	Description for Product C	0.00
@@ -176,7 +140,45 @@ id	Products_name	price	description         	discount
 19	Product S	140.00	Description for Product S	0.00
 20	Product T	150.00	Description for Product T	0.00
 
--- sample date for orders table
+
+------------------------------------------------------------------------------------------
+
+-- Create the 'products' table
+
+CREATE TABLE products 
+(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    description TEXT NOT NULL
+);
+
+-- Insert 20 sample products
+
+INSERT INTO products (Products_name, price, description)
+VALUES
+('Product A', 25.00, 'Description for Product A'),
+('Product B', 30.00, 'Description for Product B'),
+('Product C', 40.00, 'Description for Product C'),
+('Product D', 50.00, 'Description for Product D'),
+('Product E', 60.00, 'Description for Product E'),
+('Product F', 20.00, 'Description for Product F'),
+('Product G', 45.00, 'Description for Product G'),
+('Product H', 35.00, 'Description for Product H'),
+('Product I', 55.00, 'Description for Product I'),
+('Product J', 65.00, 'Description for Product J'),
+('Product K', 25.00, 'Description for Product K'),
+('Product L', 75.00, 'Description for Product L'),
+('Product M', 85.00, 'Description for Product M'),
+('Product N', 95.00, 'Description for Product N'),
+('Product O', 100.00, 'Description for Product O'),
+('Product P', 110.00, 'Description for Product P'),
+('Product Q', 120.00, 'Description for Product Q'),
+('Product R', 130.00, 'Description for Product R'),
+('Product S', 140.00, 'Description for Product S'),
+('Product T', 150.00, 'Description for Product T');
+
+-- Retrieve date for orders table
 
 SELECT * FROM ecommerce.orders;
 
@@ -202,4 +204,35 @@ id customer_id	order_date	total_amount
 19	19	        2024-09-02	1000.00
 20	20	        2024-08-28	1050.00
 
+------------------------------------------------------------------
+
+*Queries 9 and 6th points based following created for 'order_items' table*
+
+-- Retrieve date for order_items table
+
+SELECT * FROM ecommerce.order_items;
+
+id	order_id	product_id	quantity
+1	   1	        1	        2
+2	   1	        2	        1
+3	   2	        3	        1
+4	   2	        4	        3
+5	   3	        5	        2
+6	   3	        6	        1
+7	   4	        1	        3
+8	   4	        7	        2
+9	   5	        8	        1
+10	   5	        2	        1
+11	   6	        9	        1
+12	   6	        10	        2
+13	   7	        3	        1
+14	   7	        5	        2
+15	   8	        6	        1
+16	   8	        8	        1
+17	   9	        2	        1
+18     9	        4	        2
+19	  10	        10	        1
+20	  10	        1	        3
+
+			
 
